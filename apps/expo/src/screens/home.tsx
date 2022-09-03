@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, View, Text, Button } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import type { inferProcedureOutput } from "@trpc/server";
 import type { AppRouter } from "@acme/api";
@@ -16,16 +16,15 @@ const PostCard: React.FC<{
 };
 
 export const HomeScreen = () => {
-  const postQuery = trpc.post.all.useQuery();
-
-  console.log(postQuery);
-
+  const { data, error, isLoading, refetch} = trpc.post.all.useQuery();
   return (
     <SafeAreaView>
       <View className="h-full w-full py-8 px-4">
         <Text className="text-5xl font-bold">Create T3 Turbo</Text>
+        <Button title="Refetch stuff" onPress={() => refetch()} />
+
         <FlashList
-          data={postQuery.data}
+          data={data}
           estimatedItemSize={20}
           renderItem={(p) => <PostCard post={p.item} />}
         />

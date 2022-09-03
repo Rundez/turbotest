@@ -10,7 +10,7 @@ import { transformer } from "@acme/api/transformer";
 import { HomeScreen } from "./screens/home";
 import { Text } from "react-native";
 
-const url = "http://192.168.1.166:3000/api/trpc";
+const url = "http://127.0.0.1:3000/api/trpc";
 
 const App = () => {
   const [queryClient] = React.useState(() => new QueryClient());
